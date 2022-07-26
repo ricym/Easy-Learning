@@ -1,0 +1,4 @@
+clc
+clear all
+
+l = 0.005;
