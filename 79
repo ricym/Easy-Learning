@@ -1,0 +1,19 @@
+import numpy as np
+import pandas as pd
+from scipy.interpolate import interp1d
+from scipy.integrate import trapz
+
+file = pd.read_excel('file.xlsx')
+column_name = 'your_column_name'
+data = np.array(file[column_name])
+
+# 将数据连接成曲线
+x = np.linspace(0, 1, 106)
+f = interp1d(x, data, kind='linear')
+curve = f(x)
+
+threshold = 0.9
+mask = curve >= threshold
+range_above_threshold = x[mask]
+
+l = range_above_threshold[0] - range_above_threshold[-1]
